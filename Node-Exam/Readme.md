@@ -132,7 +132,7 @@ NODE/
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone <[repository-url](https://github.com/Raid-Maniyar/Node-Exam)>
 ```
 
 ### Navigate to Project
