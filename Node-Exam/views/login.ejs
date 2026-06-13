@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ShopDesk</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <section class="auth-card">
+            <p class="eyebrow">Welcome back</p>
+            <h1>Login</h1>
+            <p class="subtle">Enter your account details to open the ecommerce dashboard.</p>
+
+            <% if (typeof error !== 'undefined') { %>
+                <div class="alert"><%= error %></div>
+            <% } %>
+
+            <form class="form-grid" action="/login" method="POST">
+                <label>
+                    Username
+                    <input type="text" name="username" placeholder="admin" required>
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" placeholder="Your password" required>
+                </label>
+                <button class="button primary" type="submit">Login</button>
+            </form>
+
+            <p class="auth-foot">No account yet? <a href="/register">Register</a></p>
+        </section>
+    </main>
+</body>
+</html>

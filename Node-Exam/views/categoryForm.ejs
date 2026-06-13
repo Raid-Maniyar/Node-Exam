@@ -1,0 +1,27 @@
+<%- include('partials/navbar') %>
+
+<main class="page">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">Admin category manager</p>
+            <h1><%= category ? 'Edit Category' : 'Add Category' %></h1>
+            <p class="subtle">Keep category names simple so shoppers can filter products quickly.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <form class="form-grid" action="<%= category ? `/category/edit/${category._id}` : '/category/add' %>" method="POST">
+            <label>
+                Category name
+                <input type="text" name="name" value="<%= category ? category.name : '' %>" required>
+            </label>
+
+            <div class="actions">
+                <button class="button primary" type="submit"><%= category ? 'Update Category' : 'Create Category' %></button>
+                <a class="button" href="/categories">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

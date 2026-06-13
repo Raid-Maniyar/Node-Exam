@@ -1,0 +1,40 @@
+<%- include('partials/navbar') %>
+
+<main class="page">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">Catalog structure</p>
+            <h1>Categories</h1>
+            <p class="subtle">Use categories to organize products and power product filtering.</p>
+        </div>
+
+        <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+            <a class="button primary" href="/category/add">Add Category</a>
+        <% } %>
+    </section>
+
+    <section class="category-list">
+        <% categories.forEach(category => { %>
+            <div class="category-row">
+                <div>
+                    <h2><%= category.name %></h2>
+                    <p class="subtle"><%= category.productCount %> product<%= category.productCount === 1 ? '' : 's' %></p>
+                </div>
+
+                <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                    <div class="actions">
+                        <a class="button" href="/products?category=<%= category._id %>">View</a>
+                        <a class="button" href="/category/edit/<%= category._id %>">Edit</a>
+                        <form class="inline-form" action="/category/delete/<%= category._id %>" method="POST">
+                            <button class="button danger" type="submit" onclick="return confirm('Delete this category? Products will become uncategorized.')">Delete</button>
+                        </form>
+                    </div>
+                <% } else { %>
+                    <a class="button" href="/products?category=<%= category._id %>">View products</a>
+                <% } %>
+            </div>
+        <% }) %>
+    </section>
+</main>
+</body>
+</html>

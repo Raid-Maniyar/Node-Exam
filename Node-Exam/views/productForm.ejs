@@ -1,0 +1,42 @@
+<%- include('partials/navbar') %>
+
+<main class="page">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">Product studio</p>
+            <h1><%= product ? 'Edit Product' : 'Add Product' %></h1>
+            <p class="subtle">Add clean product data and connect it to a category for filtering.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <form class="form-grid" action="<%= product ? `/product/edit/${product._id}` : '/product/add' %>" method="POST">
+            <label>
+                Product name
+                <input type="text" name="name" value="<%= product ? product.name : '' %>" required>
+            </label>
+
+            <label>
+                Price ($)
+                <input type="number" name="price" min="0" step="0.01" value="<%= product ? product.price : '' %>" required>
+            </label>
+
+            <label>
+                Category
+                <select name="category" required>
+                    <option value="" disabled <%= !product ? 'selected' : '' %>>Select a category</option>
+                    <% categories.forEach(cat => { %>
+                        <option value="<%= cat._id %>" <%= product && product.category && product.category.toString() === cat._id.toString() ? 'selected' : '' %>><%= cat.name %></option>
+                    <% }) %>
+                </select>
+            </label>
+
+            <div class="actions">
+                <button class="button primary" type="submit"><%= product ? 'Update Product' : 'Create Product' %></button>
+                <a class="button" href="/products">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

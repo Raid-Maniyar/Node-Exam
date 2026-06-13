@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | ShopDesk</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <section class="auth-card">
+            <p class="eyebrow">Create account</p>
+            <h1>Register</h1>
+            <p class="subtle">Choose a role to test role-based product and category permissions.</p>
+
+            <% if (typeof error !== 'undefined') { %>
+                <div class="alert"><%= error %></div>
+            <% } %>
+
+            <form class="form-grid" action="/register" method="POST">
+                <label for="username">
+                    Username
+                    <input type="text" name="username" id="username" placeholder="Enter your username" required>
+                </label>
+
+                <label for="password">
+                    Password
+                    <input type="password" name="password" id="password" minlength="4" placeholder="Enter your password" required>
+                </label>
+
+                <button class="button primary" type="submit">Create Account</button>
+            </form>
+
+            <p class="auth-foot">Already registered? <a href="/login">Login here</a></p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<article class="product-card">
+    <div>
+        <p class="eyebrow"><%= product.category ? product.category.name : 'Uncategorized' %></p>
+        <h2><%= product.name %></h2>
+    </div>
+
+    <div class="price">$<%= Number(product.price).toFixed(2) %></div>
+
+    <div class="meta">
+        <span class="pill">Added by <%= product.createdBy ? product.createdBy.username : 'Unknown' %></span>
+    </div>
+
+    <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+        <div class="actions">
+            <a class="button" href="/product/edit/<%= product._id %>">Edit</a>
+            <form class="inline-form" action="/product/delete/<%= product._id %>" method="POST">
+                <button class="button danger" type="submit" onclick="return confirm('Delete this product?')">Delete</button>
+            </form>
+        </div>
+    <% } else { %>
+        <% const isFavorite = typeof favoriteIds !== 'undefined' && favoriteIds.includes(product._id.toString()); %>
+        <div class="actions">
+            <% if (isFavorite) { %>
+                <form class="inline-form" action="/favorites/<%= product._id %>/remove" method="POST">
+                    <button class="button danger" type="submit">Remove Favorite</button>
+                </form>
+            <% } else { %>
+                <form class="inline-form" action="/favorites/<%= product._id %>/add" method="POST">
+                    <button class="button primary" type="submit">Add Favorite</button>
+                </form>
+            <% } %>
+        </div>
+    <% } %>
+</article>
